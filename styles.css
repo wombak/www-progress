@@ -1,0 +1,31 @@
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #232323;
+}
+
+body {
+  transition: background 0.2s ease;
+}
+
+::selection {
+  background: #f5e05b;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+* {
+  font-family: "PT Mono", monospace;
+}

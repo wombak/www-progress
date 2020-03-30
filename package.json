@@ -1,0 +1,39 @@
+{
+  "name": "@wombak/www-progress",
+  "version": "0.0.1",
+  "description": "A visual representation of the development progress on the @wombak/www project.",
+  "author": "Brad Adams <hi@breadadams.com> (https://breadadams.com/)",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "node scripts/gifs.js",
+    "start": "parcel index.html",
+    "build": "npm run prestart && parcel build index.html"
+  },
+  "dependencies": {
+    "@octokit/rest": "^17.1.4",
+    "@styled-icons/evil": "^10.0.0",
+    "@styled-icons/material": "^10.0.0",
+    "@styled-icons/octicons": "^10.1.0",
+    "framer-motion": "^1.10.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-uid": "^2.2.0",
+    "react-use-dimensions": "^1.2.1",
+    "styled-components": "^5.0.1",
+    "styled-icons": "^10.2.1"
+  },
+  "devDependencies": {
+    "@giphy/js-fetch-api": "^1.5.2",
+    "dotenv": "^8.2.0",
+    "parcel-bundler": "^1.12.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wombak/www-progress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wombak/www-progress/issues"
+  },
+  "homepage": "https://github.com/wombak/www-progress#readme"
+}
