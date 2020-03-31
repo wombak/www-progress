@@ -1,8 +1,8 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Spinner3 } from "@styled-icons/evil/Spinner3";
 
+import { Icon } from "../../atoms";
 import { colors } from "../../theme";
 
 const SIZE = 40;
@@ -43,7 +43,7 @@ const Wrap = styled(motion.div)`
   top: calc(50% - ${SIZE / 2}px);
 `;
 
-const Spinner = styled(Spinner3)`
+const Spinner = styled(Icon).attrs(() => ({ name: "spinner" }))`
   align-self: center;
   color: ${colors.light};
   width: ${SIZE}px;

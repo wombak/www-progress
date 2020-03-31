@@ -9,9 +9,6 @@ import {
   useSpring
 } from "framer-motion";
 import useDimensions from "react-use-dimensions";
-import { Browser } from "@styled-icons/octicons/Browser";
-import { Project } from "@styled-icons/octicons/Project";
-import { MarkGithub } from "@styled-icons/octicons/MarkGithub";
 
 import { Button, Container } from "../../atoms";
 import { AppContext } from "../../context";
@@ -117,11 +114,7 @@ const StatsInterface = () => {
     [0.9, 1]
   );
 
-  const rotateX = useTransform(
-    cursorY,
-    [height * 0.2, height * 0.8],
-    [-5, 5]
-  );
+  const rotateX = useTransform(cursorY, [height * 0.2, height * 0.8], [-5, 5]);
   const rotateY = useTransform(cursorX, [width * 0.2, width * 0.8], [6, -6]);
 
   const leftSquareZ = useTransform(cursorX, [width * 0.4, width], [5, 80]);
@@ -168,17 +161,12 @@ const StatsInterface = () => {
               />
 
               <TopButtonArea>
-                <Button
-                  as={motion.a}
-                  Icon={Browser}
-                  href={urls.WOMBAK}
-
-                >
+                <Button as={motion.a} icon="browser" href={urls.WOMBAK}>
                   wombak.xyz
                 </Button>
                 <Button
                   as={motion.a}
-                  Icon={MarkGithub}
+                  icon="githubLogo"
                   href={urls.REPO}
                   target="_blank"
                 >
@@ -203,7 +191,7 @@ const StatsInterface = () => {
 
               <BottomButtonArea>
                 <Button
-                  Icon={Project}
+                  icon="project"
                   as={motion.a}
                   href={urls.KANBAN}
                   target="_blank"

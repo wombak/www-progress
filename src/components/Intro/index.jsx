@@ -2,7 +2,6 @@ import React, { useCallback, useContext, useMemo } from "react";
 import styled from "styled-components";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import useDimensions from "react-use-dimensions";
-import { Mouse } from "@styled-icons/material/Mouse";
 
 import { Container } from "../../atoms";
 import { AppContext } from "../../context";

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Mouse } from "@styled-icons/material/Mouse";
 
+import { Icon } from "../../atoms";
 import { colors } from "../../theme";
 
 const scrollIconStates = {
@@ -28,7 +28,7 @@ const IconWrap = styled(motion.button)`
   z-index: 5;
 `;
 
-const MouseIcon = styled(Mouse)`
+const MouseIcon = styled(Icon).attrs(() => ({ name: "mouse" }))`
   width: 32px;
   color: ${colors.light};
 `;

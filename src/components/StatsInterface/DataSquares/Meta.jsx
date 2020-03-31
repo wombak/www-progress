@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
-import { GitCommit } from "@styled-icons/octicons/GitCommit";
-import { Star } from "@styled-icons/octicons/Star";
-import { Eye } from "@styled-icons/octicons/Eye";
 
+import { Icon } from "../../../atoms";
 import { colors } from "../../../theme";
 
 import Base from "./Base";
@@ -47,7 +45,7 @@ const MetaRow = styled.div`
   }
 `;
 
-const Icon = styled.svg`
+const RowIcon = styled(Icon)`
   width: 28px;
   margin-right: 16px;
   color: ${colors.light};
@@ -61,23 +59,37 @@ const Value = styled.span`
   text-shadow: 0 2px 10px rgba(35, 35, 35, 0.15);
 `;
 
-const MetaSquare = ({ commits = 0, stars = 0, watching = 0, ...props }) => (
-  <Wrap {...props}>
-    <Inner>
-      <MetaRow>
-        <Icon as={GitCommit} />
-        <Value>{commits}</Value>
-      </MetaRow>
-      <MetaRow>
-        <Icon as={Star} />
-        <Value>{stars}</Value>
-      </MetaRow>
-      <MetaRow>
-        <Icon as={Eye} />
-        <Value>{watching}</Value>
-      </MetaRow>
-    </Inner>
-  </Wrap>
-);
+const MetaSquare = ({ commits = 0, stars = 0, watching = 0, ...props }) => {
+  const data = useMemo(
+    () => [
+      {
+        value: commits,
+        icon: "commit"
+      },
+      {
+        value: stars,
+        icon: "star"
+      },
+      {
+        value: watching,
+        icon: "eye"
+      }
+    ],
+    [commits, starts, watching]
+  );
+
+  return (
+    <Wrap {...props}>
+      <Inner>
+        {data.map(({ value, icon }) => (
+          <MetaRow key={icon}>
+            <RowIcon name={icon} />
+            <Value>{value}</Value>
+          </MetaRow>
+        ))}
+      </Inner>
+    </Wrap>
+  );
+};
 
 export default MetaSquare;

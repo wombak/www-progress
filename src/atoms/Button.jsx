@@ -4,6 +4,7 @@ import { motion, useSpring, useTransform } from "framer-motion";
 import useDimensions from "react-use-dimensions";
 
 import { colors } from "../theme";
+import Icon from "./Icon";
 
 const labelColor = "#161303";
 
@@ -86,7 +87,7 @@ const springOptions = {
   mass: 1
 };
 
-const Button = ({ children, Icon, ...props }) => {
+const Button = ({ children, icon, ...props }) => {
   const [buttonRef, { width, height, x, y }] = useDimensions();
   const cursorX = useSpring(0, springOptions);
   const cursorY = useSpring(0, springOptions);
@@ -129,9 +130,9 @@ const Button = ({ children, Icon, ...props }) => {
         }}
       >
         <ButtonContents variants={contentsVariants}>
-          {Icon && (
+          {icon && (
             <IconWrap>
-              <Icon />
+              <Icon name={icon} />
             </IconWrap>
           )}
           <Label>{children}</Label>

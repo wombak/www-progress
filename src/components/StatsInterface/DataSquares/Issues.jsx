@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { IssueClosed } from "@styled-icons/octicons/IssueClosed";
-import { IssueOpened } from "@styled-icons/octicons/IssueOpened";
 
+import { Icon } from "../../../atoms";
 import { colors } from "../../../theme";
 import { urls } from "../../../utils";
 
@@ -56,9 +55,11 @@ const IssueRow = styled(motion.a)`
   }
 `;
 
-const RowIcon = styled.svg`
+const RowIcon = styled(Icon).attrs(({ isOpen }) => ({
+  name: isOpen ? "issueOpened" : "issueClosed"
+}))`
   width: 18px;
-  color: ${({ closed }) => colors[!closed ? "error" : "success"]};
+  color: ${({ isOpen }) => colors[isOpen ? "error" : "success"]};
   margin-right: 8px;
 `;
 
@@ -122,10 +123,7 @@ const IssuesSquare = ({ issues = [], ...props }) => (
             whileHover={{ z: 60, scale: 1.15 }}
             whileTap={{ scale: 1.1 }}
           >
-            <RowIcon
-              closed={!isOpen}
-              as={isOpen ? IssueOpened : IssueClosed}
-            ></RowIcon>
+            <RowIcon isOpen={isOpen}></RowIcon>
             <RowText>
               <RowTitle>{issue.title}</RowTitle>
               <RowSubtitle>
