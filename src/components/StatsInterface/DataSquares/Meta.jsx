@@ -75,7 +75,7 @@ const MetaSquare = ({ commits = 0, stars = 0, watching = 0, ...props }) => {
         icon: "eye"
       }
     ],
-    [commits, starts, watching]
+    [commits, stars, watching]
   );
 
   return (

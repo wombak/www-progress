@@ -123,7 +123,7 @@ const StatsInterface = () => {
   useEffect(() => {
     cursorX.set(width / 2);
     cursorY.set(height / 2);
-  }, [height, width]);
+  }, [cursorX, cursorY, height, width]);
 
   const wrapStyles = hasAnimated ? { opacity, scale } : {};
 
@@ -140,11 +140,11 @@ const StatsInterface = () => {
           animate={{ opacity: 1, scale: 1 }}
           onAnimationComplete={() => setHasAnimated(true)}
           style={wrapStyles}
-          onMouseMove={e => {
+          onMouseMove={(e) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
           }}
-          onMouseLeave={e => {
+          onMouseLeave={(e) => {
             cursorX.set(width / 2);
             cursorY.set(height / 2);
           }}

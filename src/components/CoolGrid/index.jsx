@@ -33,7 +33,7 @@ const gridVariants = {
 };
 
 const itemVariants = {
-  initial: scale => ({ scale }),
+  initial: (scale) => ({ scale }),
   show: {
     scale: 1,
     transition: { type: "spring" }

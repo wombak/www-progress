@@ -4,30 +4,7 @@
   "description": "A visual representation of the development progress on the @wombak/www project.",
   "author": "Brad Adams <hi@breadadams.com> (https://breadadams.com/)",
   "license": "MIT",
-  "main": "index.js",
-  "scripts": {
-    "prestart": "node scripts/gifs.js",
-    "start": "parcel index.html",
-    "build": "npm run prestart && parcel build index.html"
-  },
-  "dependencies": {
-    "@octokit/rest": "^17.1.4",
-    "@styled-icons/evil": "^10.0.0",
-    "@styled-icons/material": "^10.0.0",
-    "@styled-icons/octicons": "^10.1.0",
-    "framer-motion": "^1.10.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-uid": "^2.2.0",
-    "react-use-dimensions": "^1.2.1",
-    "styled-components": "^5.0.1",
-    "styled-icons": "^10.2.1"
-  },
-  "devDependencies": {
-    "@giphy/js-fetch-api": "^1.5.2",
-    "dotenv": "^8.2.0",
-    "parcel-bundler": "^1.12.4"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wombak/www-progress.git"
@@ -35,5 +12,44 @@
   "bugs": {
     "url": "https://github.com/wombak/www-progress/issues"
   },
-  "homepage": "https://github.com/wombak/www-progress#readme"
+  "homepage": "https://github.com/wombak/www-progress#readme",
+  "scripts": {
+    "prestart": "node scripts/gifs.js",
+    "start": "parcel index.html",
+    "build": "npm run prestart && parcel build index.html",
+    "format": "prettier --write .",
+    "lint": "eslint --ext .js --ext .jsx src"
+  },
+  "dependencies": {
+    "@octokit/rest": "latest",
+    "@styled-icons/evil": "latest",
+    "@styled-icons/material": "latest",
+    "@styled-icons/octicons": "latest",
+    "framer-motion": "latest",
+    "lodash.shuffle": "^4.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-uid": "latest",
+    "react-use-dimensions": "latest",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "babel-eslint": "latest",
+    "dotenv": "latest",
+    "eslint": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "husky": "latest",
+    "parcel-bundler": "latest",
+    "parcel-plugin-static-files-copy": "latest",
+    "posthtml-expressions": "latest",
+    "prettier": "latest",
+    "pretty-quick": "latest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run lint"
+    }
+  }
 }

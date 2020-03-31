@@ -10,11 +10,11 @@ const q = "cool";
 
 const url = `${searchApi}?q=${q}&limit=${GIF_COUNT}&api_key=${apiKey}`;
 
-https.get(url, res => {
+https.get(url, (res) => {
   res.setEncoding("utf8");
   let body = "";
 
-  res.on("data", data => {
+  res.on("data", (data) => {
     body += data;
   });
 
@@ -22,7 +22,7 @@ https.get(url, res => {
     body = JSON.parse(body);
     const urls =
       body && body.data
-        ? body.data.map(b => b.images.fixed_width_downsampled.url)
+        ? body.data.map((b) => b.images.fixed_width_downsampled.url)
         : [];
 
     fs.writeFileSync("src/gifs.json", JSON.stringify(urls, null, 4));

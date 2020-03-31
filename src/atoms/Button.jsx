@@ -110,7 +110,7 @@ const Button = ({ children, icon, ...props }) => {
       initial="default"
       whileHover="hover"
       whileTap="click"
-      onMouseMove={e => {
+      onMouseMove={(e) => {
         cursorX.set(e.clientX - x);
         cursorY.set(e.clientY - y);
       }}

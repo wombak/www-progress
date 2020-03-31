@@ -67,7 +67,7 @@ const ProgressBar = ({ completeIssues = 0, totalIssues = 0 }) => {
 
   return (
     <ProgressBarWrap>
-      {Array.from(Array(completeIssues).keys()).map(i => {
+      {Array.from(Array(completeIssues).keys()).map((i) => {
         const opacity = (1 / totalIssues) * i;
 
         return (

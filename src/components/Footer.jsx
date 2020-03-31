@@ -21,6 +21,7 @@ const FooterLogo = styled(WombakLogo).attrs(() => ({ background: "primary" }))`
   margin: 0 auto 110px;
   z-index: 1;
   position: relative;
+  pointer-events: none;
 `;
 
 const FooterText = styled(motion.div)`
@@ -84,7 +85,7 @@ const Footer = () => {
 
   useEffect(() => {
     bodyRef(document.body);
-  }, []);
+  });
 
   return (
     <FooterWrap ref={footerRef} style={{ paddingBottom: textHeight }}>

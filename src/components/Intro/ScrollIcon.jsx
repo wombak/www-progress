@@ -33,7 +33,7 @@ const MouseIcon = styled(Icon).attrs(() => ({ name: "mouse" }))`
   color: ${colors.light};
 `;
 
-const ScrollIcon = props => (
+const ScrollIcon = (props) => (
   <IconWrap
     variants={scrollIconStates}
     initial="initial"

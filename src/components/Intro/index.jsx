@@ -30,7 +30,7 @@ const Intro = () => {
 
   const pointerEvents = useMemo(
     () => (scrollY.current <= height * 0.4 ? "initial" : "none"),
-    [height, scrollY.current]
+    [height, scrollY]
   );
 
   const onScrollIconClick = useCallback(
@@ -42,9 +42,7 @@ const Intro = () => {
     [height]
   );
 
-  const onCoolMouseEvent = useCallback(show => ui.setShowGifs(show), [
-    ui.setShowGifs
-  ]);
+  const onCoolMouseEvent = useCallback((show) => ui.setShowGifs(show), [ui]);
 
   return (
     <IntroWrap ref={ref} as={motion.div} style={{ opacity, pointerEvents }}>
@@ -56,7 +54,7 @@ const Intro = () => {
       </Title>
 
       <Subtitle>
-        We're buidling something{" "}
+        We&apos;re buidling something{" "}
         <CoolLabel
           onMouseOver={() => onCoolMouseEvent(true)}
           onMouseLeave={() => onCoolMouseEvent(false)}

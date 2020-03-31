@@ -17,7 +17,7 @@ const App = () => {
   const [isUnloading, setIsUnloading] = useState(false);
 
   useEffect(() => {
-    const onBeforeUnload = e => {
+    const onBeforeUnload = (e) => {
       const href = e?.target?.activeElement?.getAttribute("href");
 
       if (href && href.startsWith("mailto")) {
