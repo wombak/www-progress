@@ -5,10 +5,10 @@ const { GIF_COUNT } = require("../src/utils");
 require("dotenv").config();
 
 const searchApi = "https://api.giphy.com/v1/gifs/search";
-const apiKey = process.env.GIPHY_API_KEY;
+const { GIPHY_API_KEY } = process.env;
 const q = "cool";
 
-const url = `${searchApi}?q=${q}&limit=${GIF_COUNT}&api_key=${apiKey}`;
+const url = `${searchApi}?q=${q}&limit=${GIF_COUNT}&api_key=${GIPHY_API_KEY}`;
 
 https.get(url, (res) => {
   res.setEncoding("utf8");
@@ -28,7 +28,3 @@ https.get(url, (res) => {
     fs.writeFileSync("src/gifs.json", JSON.stringify(urls, null, 4));
   });
 });
-
-module.exports = {
-  GIF_COUNT
-};

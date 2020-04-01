@@ -56,8 +56,9 @@ const Intro = () => {
       <Subtitle>
         We&apos;re buidling something{" "}
         <CoolLabel
-          onMouseOver={() => onCoolMouseEvent(true)}
-          onMouseLeave={() => onCoolMouseEvent(false)}
+          onMouseOver={() => ui.setShowGifs(true)}
+          onMouseLeave={() => ui.setShowGifs(false)}
+          onWheel={() => ui.setShowGifs(false)}
         >
           cool
         </CoolLabel>{" "}
