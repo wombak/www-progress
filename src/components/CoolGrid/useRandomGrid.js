@@ -1,13 +1,9 @@
-import React, {
-  useCallback,
-  useContext,
+import {
   useEffect,
-  useMemo,
   useState
 } from "react";
 import shuffle from "lodash.shuffle";
 
-import { AppContext } from "../../context";
 import gifs from "../../gifs";
 
 import { GIF_COUNT } from "../../utils";

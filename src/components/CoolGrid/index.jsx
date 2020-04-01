@@ -1,15 +1,8 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState
-} from "react";
-import styled, { css } from "styled-components";
+import React, { useContext } from "react";
+import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { AppContext } from "../../context";
-import gifs from "../../gifs";
 import { colors } from "../../theme";
 
 import useRandomGrid, { COL_COUNT, ROW_COUNT } from "./useRandomGrid";

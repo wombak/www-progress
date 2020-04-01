@@ -25,7 +25,6 @@ const Intro = () => {
   const [ref, { height = 0 }] = useDimensions();
   const { scrollY } = useViewportScroll();
 
-  const y = useTransform(scrollY, [0, height * 0.5], [0, height * 0.2]);
   const opacity = useTransform(scrollY, [height * 0.15, height * 0.5], [1, 0]);
 
   const pointerEvents = useMemo(
@@ -41,8 +40,6 @@ const Intro = () => {
       }),
     [height]
   );
-
-  const onCoolMouseEvent = useCallback((show) => ui.setShowGifs(show), [ui]);
 
   return (
     <IntroWrap ref={ref} as={motion.div} style={{ opacity, pointerEvents }}>

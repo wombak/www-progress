@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { colors } from "../../theme";
 

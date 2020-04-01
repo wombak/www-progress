@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   motion,
   AnimatePresence,
-  useMotionValue,
   useTransform,
   useViewportScroll,
   useSpring
@@ -12,7 +11,7 @@ import useDimensions from "react-use-dimensions";
 
 import { Button, Container } from "../../atoms";
 import { AppContext } from "../../context";
-import { MILESTONE, urls } from "../../utils";
+import { urls } from "../../utils";
 import { colors } from "../../theme";
 
 import { IssuesSquare, MetaSquare } from "./DataSquares";
@@ -90,10 +89,9 @@ const springOptions = {
 const StatsInterface = () => {
   const { github } = useContext(AppContext);
   const { scrollY } = useViewportScroll();
-  const [ref, { height = 0, width = 0, x = 0, y = 0 }] = useDimensions();
+  const [ref, { height = 0, width = 0, y = 0 }] = useDimensions();
   const yOffset = y + window.pageYOffset;
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [hasAnimated2, setHasAnimated2] = useState(false);
 
   const cursorX = useSpring(0, springOptions);
   const cursorY = useSpring(0, springOptions);
@@ -120,12 +118,12 @@ const StatsInterface = () => {
   const leftSquareZ = useTransform(cursorX, [width * 0.4, width], [5, 80]);
   const rightSquareZ = useTransform(cursorY, [height, 0], [-10, -100]);
 
+  const wrapStyles = hasAnimated ? { opacity, scale } : {};
+
   useEffect(() => {
     cursorX.set(width / 2);
     cursorY.set(height / 2);
   }, [cursorX, cursorY, height, width]);
-
-  const wrapStyles = hasAnimated ? { opacity, scale } : {};
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -144,7 +142,7 @@ const StatsInterface = () => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
           }}
-          onMouseLeave={(e) => {
+          onMouseLeave={() => {
             cursorX.set(width / 2);
             cursorY.set(height / 2);
           }}
