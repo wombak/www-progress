@@ -1,3 +1,25 @@
+@font-face {
+  font-family: "PT Mono";
+  src: url("./fonts/PT%20Mono_Regular.eot");
+  src: url("./fonts/PT%20Mono_Regular.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/PT%20Mono_Regular.woff2") format("woff2"),
+    url("./fonts/PT%20Mono_Regular.woff") format("woff"),
+    url("./fonts/PT%20Mono_Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PT Mono";
+  src: url("./fonts/PT%20Mono_Bold.eot");
+  src: url("./fonts/PT%20Mono_Bold.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/PT%20Mono_Bold.woff2") format("woff2"),
+    url("./fonts/PT%20Mono_Bold.woff") format("woff"),
+    url("./fonts/PT%20Mono_Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 html,
 body,
 h1,
@@ -16,10 +38,6 @@ html {
   background: #232323;
 }
 
-body {
-  transition: background 0.2s ease;
-}
-
 ::selection {
   background: #f5e05b;
   color: #ffffff;
@@ -28,4 +46,6 @@ body {
 
 * {
   font-family: "PT Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
