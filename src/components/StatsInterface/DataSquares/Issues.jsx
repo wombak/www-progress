@@ -19,7 +19,7 @@ const Header = styled.header`
   margin-bottom: 8px;
 `;
 
-const Title = styled.h2`
+const Title = styled.h4`
   font-weight: bold;
   font-size: 12px;
   color: ${colors.dark};
@@ -40,7 +40,11 @@ const IssueRows = styled.div`
   transform: translateX(20px);
 `;
 
-const IssueRow = styled(motion.a)`
+const IssueRow = styled(motion.a).attrs(() => ({
+  initial: { z: 5 },
+  whileHover: { z: 60, scale: 1.15 },
+  whileTap: { scale: 1.1 }
+}))`
   display: flex;
   align-items: center;
   background: ${colors.light};
@@ -115,14 +119,7 @@ const IssuesSquare = ({ issues = [], ...props }) => (
         const dayLabel = `day${daysDifference > 1 ? "s" : ""}`;
 
         return (
-          <IssueRow
-            key={index}
-            href={issue.html_url}
-            target="_blank"
-            initial={{ z: 5 }}
-            whileHover={{ z: 60, scale: 1.15 }}
-            whileTap={{ scale: 1.1 }}
-          >
+          <IssueRow key={index} href={issue.html_url} target="_blank">
             <RowIcon isOpen={isOpen}></RowIcon>
             <RowText>
               <RowTitle>{issue.title}</RowTitle>

@@ -7,17 +7,21 @@ import { colors } from "../../theme";
 
 import useRandomGrid, { COL_COUNT, ROW_COUNT } from "./useRandomGrid";
 
+const FM_INITIAL = "initial";
+const FM_APPEAR = "appear";
+const FM_EXIT = "exit";
+
 const gridVariants = {
-  initial: {
+  [FM_INITIAL]: {
     opacity: 0
   },
-  show: {
+  [FM_APPEAR]: {
     opacity: 1,
     transition: {
       duration: 0.1
     }
   },
-  hide: {
+  [FM_EXIT]: {
     opacity: 0,
     transition: {
       duration: 0.2
@@ -26,8 +30,8 @@ const gridVariants = {
 };
 
 const itemVariants = {
-  initial: (scale) => ({ scale }),
-  show: {
+  [FM_INITIAL]: (scale) => ({ scale }),
+  [FM_APPEAR]: {
     scale: 1,
     transition: { type: "spring" }
   }
@@ -73,9 +77,9 @@ const CoolGrid = () => {
       {ui.showGifs && (
         <Grid
           variants={gridVariants}
-          initial="initial"
-          animate="show"
-          exit="hide"
+          initial={FM_INITIAL}
+          animate={FM_APPEAR}
+          exit={FM_EXIT}
         >
           {gridItems.map(({ initialScale, url }) => (
             <Item

@@ -86,6 +86,8 @@ const springOptions = {
   mass: 2
 };
 
+const linkButton = { as: motion.a, target: "_blank" };
+
 const StatsInterface = () => {
   const { github } = useContext(AppContext);
   const { scrollY } = useViewportScroll();
@@ -159,15 +161,10 @@ const StatsInterface = () => {
               />
 
               <TopButtonArea>
-                <Button as={motion.a} icon="browser" href={urls.WOMBAK}>
+                <Button {...linkButton} icon="browser" href={urls.WOMBAK}>
                   wombak.xyz
                 </Button>
-                <Button
-                  as={motion.a}
-                  icon="githubLogo"
-                  href={urls.REPO}
-                  target="_blank"
-                >
+                <Button {...linkButton} icon="githubLogo" href={urls.REPO}>
                   wombak/www
                 </Button>
               </TopButtonArea>
@@ -188,12 +185,7 @@ const StatsInterface = () => {
               />
 
               <BottomButtonArea>
-                <Button
-                  icon="project"
-                  as={motion.a}
-                  href={urls.KANBAN}
-                  target="_blank"
-                >
+                <Button {...linkButton} icon="project" href={urls.KANBAN}>
                   Kanban board
                 </Button>
               </BottomButtonArea>

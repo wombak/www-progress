@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext } from "react";
 import styled from "styled-components";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import useDimensions from "react-use-dimensions";
@@ -27,10 +27,7 @@ const Intro = () => {
 
   const opacity = useTransform(scrollY, [height * 0.15, height * 0.5], [1, 0]);
 
-  const pointerEvents = useMemo(
-    () => (scrollY.current <= height * 0.4 ? "initial" : "none"),
-    [height, scrollY]
-  );
+  const pointerEvents = scrollY.get() <= height * 0.4 ? "initial" : "none";
 
   const onScrollIconClick = useCallback(
     () =>

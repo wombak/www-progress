@@ -6,28 +6,35 @@ import useDimensions from "react-use-dimensions";
 import { colors } from "../theme";
 import Icon from "./Icon";
 
-const labelColor = "#161303";
+const FM_INITIAL = "initial";
+const FM_HOVER = "hover";
+const FM_TAP = "tap";
 
 const innerVariants = {
-  hover: {
+  [FM_HOVER]: {
     scale: 1.25
   },
-  click: {
+  [FM_TAP]: {
     scale: 1.2
   }
 };
 
 const contentsVariants = {
-  default: {
+  [FM_INITIAL]: {
     z: 3
   },
-  hover: {
+  [FM_HOVER]: {
     z: 20
   },
-  click: {
+  [FM_TAP]: {
     z: 10
   }
 };
+
+const transition = { type: "spring" };
+
+const LABEL_COLOR = "#161303";
+const LABEL_SHADOW = "0 0 8px rgba(57, 50, 9, 0.35)";
 
 const ButtonWrap = styled(motion.button)`
   display: block;
@@ -63,17 +70,17 @@ const IconWrap = styled.span`
   display: block;
   width: 20px;
   margin-right: 14px;
-  color: ${labelColor};
-  filter: drop-shadow(0 0 8px rgba(57, 50, 9, 0.35));
+  color: ${LABEL_COLOR};
+  filter: drop-shadow(${LABEL_SHADOW});
 `;
 
 const Label = styled.span`
   display: block;
   font-weight: bold;
   font-size: 16px;
-  color: ${labelColor};
+  color: ${LABEL_COLOR};
   text-align: center;
-  text-shadow: 0 0 8px rgba(57, 50, 9, 0.35);
+  text-shadow: ${LABEL_SHADOW};
 
   &::selection {
     color: ${colors.light};
@@ -107,9 +114,9 @@ const Button = ({ children, icon, ...props }) => {
   return (
     <ButtonWrap
       ref={buttonRef}
-      initial="default"
-      whileHover="hover"
-      whileTap="click"
+      initial={FM_INITIAL}
+      whileHover={FM_HOVER}
+      whileTap={FM_TAP}
       onMouseMove={(e) => {
         cursorX.set(e.clientX - x);
         cursorY.set(e.clientY - y);
@@ -124,12 +131,13 @@ const Button = ({ children, icon, ...props }) => {
     >
       <ButtonInner
         variants={innerVariants}
+        transition={transition}
         style={{
           rotateX: buttonRotateX,
           rotateY: buttonRotateY
         }}
       >
-        <ButtonContents variants={contentsVariants}>
+        <ButtonContents variants={contentsVariants} transition={transition}>
           {icon && (
             <IconWrap>
               <Icon name={icon} />

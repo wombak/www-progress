@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import useDimensions from "react-use-dimensions";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
@@ -22,6 +22,7 @@ const FooterLogo = styled(WombakLogo).attrs(() => ({ background: "primary" }))`
   z-index: 1;
   position: relative;
   pointer-events: none;
+  backface-visibility: hidden;
 `;
 
 const FooterText = styled(motion.div)`
@@ -29,6 +30,7 @@ const FooterText = styled(motion.div)`
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  backface-visibility: hidden;
 `;
 
 const ContactDetails = styled.div`
@@ -39,7 +41,10 @@ const ContactDetails = styled.div`
 `;
 
 const EmailLink = styled(motion.a).attrs(({ children }) => ({
-  href: `mailto:${children}`
+  href: `mailto:${children}`,
+  transition: { type: "spring" },
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 0.95 }
 }))`
   display: inline-block;
   font-weight: bold;
@@ -59,7 +64,7 @@ const Copyright = styled.p`
   color: ${colors.dark};
   margin-top: 60px;
   text-align: center;
-  font-size: 10px;
+  font-size: 12px;
 `;
 
 const Footer = () => {
@@ -67,21 +72,25 @@ const Footer = () => {
   const [footerRef, { height: footerHeight = 0 }] = useDimensions();
   const [textRef, { height: textHeight = 0 }] = useDimensions();
   const { scrollY } = useViewportScroll();
-  const windowHeight = window.innerHeight;
+  const { innerHeight: windowHeight = 0 } = window;
 
-  const anchorPoint = footerHeight > windowHeight ? footerHeight : windowHeight;
+  const anchorPoint = useMemo(
+    () => (footerHeight > windowHeight ? footerHeight : windowHeight),
+    [footerHeight, windowHeight]
+  );
 
-  const opacity = useTransform(
+  const visiblePoint = useMemo(() => bodyHeight - anchorPoint * 1.5, [
+    anchorPoint,
+    bodyHeight
+  ]);
+
+  const textOpacity = useTransform(
     scrollY,
-    [bodyHeight - anchorPoint * 1.5, bodyHeight - anchorPoint],
+    [visiblePoint, bodyHeight - anchorPoint],
     [0, 1]
   );
 
-  const textStyles = {
-    visibility:
-      scrollY.get() <= bodyHeight - anchorPoint * 1.5 ? "hidden" : "visible",
-    opacity
-  };
+  const textVisibility = scrollY.get() < visiblePoint ? "hidden" : "visible";
 
   useEffect(() => {
     bodyRef(document.body);
@@ -91,19 +100,16 @@ const Footer = () => {
     <FooterWrap ref={footerRef} style={{ paddingBottom: textHeight }}>
       <FooterLogo />
 
-      <FooterText ref={textRef} style={textStyles}>
+      <FooterText
+        ref={textRef}
+        style={{ opacity: textOpacity, visibility: textVisibility }}
+      >
         <ContactDetails>
-          <EmailLink
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring" }}
-          >
-            {contactDetails.email}
-          </EmailLink>
+          <EmailLink>{contactDetails.email}</EmailLink>
           <Address>{contactDetails.address}</Address>
         </ContactDetails>
 
-        <Copyright>Copyright © 2020 Wombak</Copyright>
+        <Copyright>© 2020 wombak</Copyright>
       </FooterText>
     </FooterWrap>
   );

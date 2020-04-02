@@ -5,19 +5,22 @@ import { motion } from "framer-motion";
 import { Icon } from "../../atoms";
 import { colors } from "../../theme";
 
-const SIZE = 40;
+const FM_INITIAL = "initial";
+const FM_APPEAR = "appear";
+const FM_SPIN = "spin";
+const FM_EXIT = "exit";
 
 const variants = {
-  initial: {
+  [FM_INITIAL]: {
     opacity: 0
   },
-  appear: {
+  [FM_APPEAR]: {
     opacity: 1,
     transition: {
       duration: 1
     }
   },
-  spin: {
+  [FM_SPIN]: {
     rotate: 360,
     scale: 1.1,
     transition: {
@@ -32,10 +35,12 @@ const variants = {
       }
     }
   },
-  exit: {
+  [FM_EXIT]: {
     opacity: 0
   }
 };
+
+const SIZE = 40;
 
 const Wrap = styled(motion.div)`
   position: absolute;
@@ -52,9 +57,9 @@ const Spinner = styled(Icon).attrs(() => ({ name: "spinner" }))`
 const LoadingIndicator = () => (
   <Wrap
     variants={variants}
-    initial="initial"
-    animate={["appear", "spin"]}
-    exit="exit"
+    initial={FM_INITIAL}
+    animate={[FM_APPEAR, FM_SPIN]}
+    exit={FM_EXIT}
   >
     <Spinner />
   </Wrap>

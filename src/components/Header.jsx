@@ -4,6 +4,16 @@ import { motion } from "framer-motion";
 
 import { WombakLogo } from "../atoms";
 
+const FM_INITIAL = "initial";
+const FM_APPEAR = "appear";
+
+const variants = {
+  [FM_INITIAL]: { y: -40, scale: 0.8, opacity: 0 },
+  [FM_APPEAR]: { y: 0, scale: 1, opacity: 1 }
+};
+
+const transition = { duration: 0.9 };
+
 const HeaderWrap = styled(motion.header)`
   display: flex;
   justify-content: center;
@@ -17,9 +27,10 @@ const HeaderWrap = styled(motion.header)`
 
 const Header = () => (
   <HeaderWrap
-    initial={{ y: -40, scale: 0.8, opacity: 0 }}
-    animate={{ y: 0, scale: 1, opacity: 1 }}
-    transition={{ duration: 0.9 }}
+    variants={variants}
+    initial={FM_INITIAL}
+    animate={FM_APPEAR}
+    transition={transition}
   >
     <WombakLogo />
   </HeaderWrap>

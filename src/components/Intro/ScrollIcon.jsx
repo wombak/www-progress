@@ -5,15 +5,20 @@ import { motion } from "framer-motion";
 import { Icon } from "../../atoms";
 import { colors } from "../../theme";
 
-const scrollIconStates = {
-  initial: { opacity: 0, y: 18 },
-  appear: {
+const FM_INITIAL = "initial";
+const FM_APPEAR = "appear";
+const FM_HOVER = "hover";
+const FM_TAP = "tap";
+
+const variants = {
+  [FM_INITIAL]: { opacity: 0, y: 18 },
+  [FM_APPEAR]: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.4, delay: 1.2 }
   },
-  hover: { scale: 1.2 },
-  tap: { scale: 1.1 }
+  [FM_HOVER]: { scale: 1.2 },
+  [FM_TAP]: { scale: 1.1 }
 };
 
 const IconWrap = styled(motion.button)`
@@ -35,13 +40,13 @@ const MouseIcon = styled(Icon).attrs(() => ({ name: "mouse" }))`
 
 const ScrollIcon = (props) => (
   <IconWrap
-    variants={scrollIconStates}
-    initial="initial"
-    animate="appear"
-    whileHover="hover"
-    whileTap="tap"
-    transition={{ type: "spring" }}
     {...props}
+    variants={variants}
+    initial={FM_INITIAL}
+    animate={FM_APPEAR}
+    whileHover={FM_HOVER}
+    whileTap={FM_TAP}
+    transition={{ type: "spring" }}
   >
     <MouseIcon />
   </IconWrap>
