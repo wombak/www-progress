@@ -48,7 +48,7 @@ const Intro = () => {
       </Title>
 
       <Subtitle>
-        We&apos;re buidling something{" "}
+        We&apos;re building something{" "}
         <CoolLabel
           onMouseOver={() => ui.setShowGifs(true)}
           onMouseLeave={() => ui.setShowGifs(false)}

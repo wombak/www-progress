@@ -160,11 +160,11 @@ const StatsInterface = () => {
               />
 
               <TopButtonArea>
-                <Button {...linkButton} icon="browser" href={urls.WOMBAK}>
-                  wombak.xyz
-                </Button>
                 <Button {...linkButton} icon="githubLogo" href={urls.REPO}>
                   wombak/www
+                </Button>
+                <Button {...linkButton} icon="browser" href={urls.WOMBAK}>
+                  wombak.xyz
                 </Button>
               </TopButtonArea>
 
