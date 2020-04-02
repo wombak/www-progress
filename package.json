@@ -29,6 +29,7 @@
     "lodash.shuffle": "^4.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-intersection-observer": "^8.26.1",
     "react-uid": "latest",
     "react-use-dimensions": "latest",
     "styled-components": "latest"

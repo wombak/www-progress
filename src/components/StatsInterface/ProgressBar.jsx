@@ -1,10 +1,51 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import { colors } from "../../theme";
 
-const ProgressBarWrap = styled.div`
+const FM_INITIAL = "initial";
+const FM_APPEAR = "appear";
+const FM_HOVER = "hover";
+const FM_EXIT = "exit";
+
+const barVariants = {
+  [FM_APPEAR]: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const blockVariants = {
+  [FM_INITIAL]: {
+    opacity: 0,
+    rotateX: 90,
+    boxShadow: "0 4px 8px rgba(11, 11, 11, 0.15)",
+    zIndex: 2,
+    transitionEnd: {
+      boxShadow: "0 4px 8px rgba(11, 11, 11, 0)",
+      zIndex: 1
+    }
+  },
+  [FM_APPEAR]: {
+    opacity: 1,
+    rotateX: 0,
+    transition: { type: "spring" }
+  },
+  [FM_HOVER]: {
+    rotateX: 20,
+    boxShadow: "0 4px 8px rgba(11, 11, 11, 0.15)",
+    zIndex: 2,
+    transition: { type: "spring" }
+  },
+  [FM_EXIT]: {
+    opacity: 0
+  }
+};
+
+const ProgressBarWrap = styled(motion.div)`
   display: flex;
   width: 72.5%;
   height: 15%;
@@ -15,73 +56,61 @@ const ProgressBarWrap = styled.div`
   background: red;
   box-shadow: 0 1px 10px 0 rgba(11, 11, 11, 0.35);
   background: rgba(255, 255, 255, 0.4);
+  perspective: 100vw;
 `;
 
 const ProgressBlock = styled(motion.div)`
   height: 100%;
-  background: ${colors.light};
-  cursor: pointer;
+  transform-origin: top center;
 
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: ${colors.dark};
-  }
-
-  ${({ blockOpacity = 0, blockWidth = 0 }) => `
+  ${({ bg = 255, blockWidth = 0 }) => `
     width: ${blockWidth}%;
-
-    &::after {
-      opacity: ${blockOpacity};
-    }
+    background: rgb(${bg}, ${bg}, ${bg});
   `}
-`;
-
-const ProgressMarker = styled.span`
-  width: 1.9%;
-  height: 112%;
-  position: absolute;
-  left: 0;
-  top: -6%;
-  transform: translateX(-50%);
-  background: ${colors.primary};
-  box-shadow: 0 0 10px 0 rgba(35, 35, 35, 0.15);
 `;
 
 const ProgressLabel = styled.span`
   font-weight: bold;
   font-size: 18px;
+  line-height: 1;
   color: ${colors.light};
-  text-align: right;
+  text-align: center;
   position: absolute;
-  right: 10px;
+  right: 16px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateZ(20px);
   user-select: none;
+  pointer-events: none;
+  padding: 3px 6px;
+  background: rgba(11, 11, 11, 0.4);
+  text-shadow: 0 1px 4px rgba(11, 11, 11, 0.35);
+  box-shadow: 0 1px 4px rgba(11, 11, 11, 0.1);
 `;
 
 const ProgressBar = ({ completeIssues = 0, totalIssues = 0 }) => {
   const blockWidth = 100 / totalIssues;
+  const [ref, inView] = useInView();
 
   return (
-    <ProgressBarWrap>
+    <ProgressBarWrap
+      ref={ref}
+      variants={barVariants}
+      initial={FM_INITIAL}
+      animate={inView ? FM_APPEAR : FM_EXIT}
+    >
       {Array.from(Array(completeIssues).keys()).map((i) => {
-        const opacity = (1 / totalIssues) * i;
+        const bg = 255 - 100 + (100 / totalIssues) * (i + 1);
 
         return (
           <ProgressBlock
             key={i}
-            blockOpacity={opacity}
+            variants={blockVariants}
+            whileHover={FM_HOVER}
+            bg={bg}
             blockWidth={blockWidth}
           />
         );
       })}
-
-      {completeIssues > 0 && (
-        <ProgressMarker style={{ left: `${blockWidth * completeIssues}%` }} />
-      )}
 
       <ProgressLabel>
         {completeIssues}/{totalIssues}
