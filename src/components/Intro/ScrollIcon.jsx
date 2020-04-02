@@ -30,7 +30,6 @@ const IconWrap = styled(motion.button)`
   border: 0;
   outline: none;
   cursor: pointer;
-  z-index: 5;
 `;
 
 const MouseIcon = styled(Icon).attrs(() => ({ name: "mouse" }))`

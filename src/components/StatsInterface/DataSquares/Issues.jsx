@@ -11,6 +11,7 @@ import Base from "./Base";
 const Wrap = styled(Base)`
   padding: 0;
   perspective: 90vw;
+  z-index: 4;
 `;
 
 const Header = styled.header`
@@ -43,7 +44,8 @@ const IssueRows = styled.div`
 const IssueRow = styled(motion.a).attrs(() => ({
   initial: { z: 5 },
   whileHover: { z: 60, scale: 1.15 },
-  whileTap: { scale: 1.1 }
+  whileTap: { scale: 1.1 },
+  transition: { type: "spring" }
 }))`
   display: flex;
   align-items: center;

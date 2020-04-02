@@ -11,7 +11,7 @@ const Wrap = styled(Base)`
   right: 0;
   left: initial;
   top: initial;
-  z-index: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;

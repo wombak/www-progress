@@ -24,7 +24,6 @@ const OuterWrap = styled(motion.div)`
   perspective: 90vw;
   padding: 0 20px;
   position: relative;
-  z-index: 3;
 `;
 
 const InnerContainer = styled(Container)`
@@ -46,7 +45,7 @@ const ModuleBg = styled.div`
   background: rgba(24, 24, 24, 0.9);
   box-shadow: 0 2px 20px 0 rgba(11, 11, 11, 0.5);
   position: relative;
-  z-index: 1;
+  z-index: 3;
 
   &::after {
     content: "";
