@@ -65,7 +65,7 @@ const RowIcon = styled(Icon).attrs(({ isOpen }) => ({
   name: isOpen ? "issueOpened" : "issueClosed"
 }))`
   width: 18px;
-  color: ${({ isOpen }) => colors[isOpen ? "error" : "success"]};
+  color: ${({ isOpen }) => colors[isOpen ? "success" : "error"]};
   margin-right: 8px;
 `;
 
