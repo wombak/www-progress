@@ -85,7 +85,7 @@ const springOptions = {
   mass: 2
 };
 
-const linkButton = { as: motion.a, target: "_blank" };
+const linkButton = { as: motion.a, target: "_blank", rel: "noopener" };
 
 const StatsInterface = () => {
   const { github } = useContext(AppContext);

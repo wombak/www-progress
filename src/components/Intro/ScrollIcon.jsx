@@ -46,6 +46,7 @@ const ScrollIcon = (props) => (
     whileHover={FM_HOVER}
     whileTap={FM_TAP}
     transition={{ type: "spring" }}
+    aria-label="Scroll Down"
   >
     <MouseIcon />
   </IconWrap>

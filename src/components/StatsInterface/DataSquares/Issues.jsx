@@ -65,7 +65,7 @@ const RowIcon = styled(Icon).attrs(({ isOpen }) => ({
   name: isOpen ? "issueOpened" : "issueClosed"
 }))`
   width: 18px;
-  color: ${({ isOpen }) => colors[isOpen ? "error" : "success"]};
+  color: ${({ isOpen }) => colors[isOpen ? "success" : "error"]};
   margin-right: 8px;
 `;
 
@@ -101,6 +101,7 @@ const IssuesSquare = ({ issues = [], ...props }) => (
       <ViewAllLink
         href={urls.ISSUES}
         target="_blank"
+        rel="noopener"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 1.025 }}
       >
@@ -121,7 +122,12 @@ const IssuesSquare = ({ issues = [], ...props }) => (
         const dayLabel = `day${daysDifference > 1 ? "s" : ""}`;
 
         return (
-          <IssueRow key={index} href={issue.html_url} target="_blank">
+          <IssueRow
+            key={index}
+            href={issue.html_url}
+            target="_blank"
+            rel="noopener"
+          >
             <RowIcon isOpen={isOpen}></RowIcon>
             <RowText>
               <RowTitle>{issue.title}</RowTitle>
